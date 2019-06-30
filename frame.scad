@@ -2,7 +2,7 @@ default_thick = 2;
 min_thick = 0.3;
 
 a_few = 10;
-play = 0.4;
+play = 0.25;
 
 sensor_length = 59.6;
 sensor_width = 39.45;
@@ -22,7 +22,7 @@ sensor_y_padding = 1.5;
 
 
 sensor_spot_excess = 0.2;
-sensor_spot_y_padding = 2;
+sensor_spot_y_padding = 4;
 sensor_spot_width = sensor_width;
 sensor_spot_length = sensor_length + play*2 + sensor_spot_y_padding*2;
 sensor_spot_height = quartz_height + sensor_thick + sensor_spot_excess;
@@ -141,7 +141,7 @@ module frame_all() {
     ramp_out();
 }
 
-frame_all();
+
 
 
 module frame() {
@@ -184,6 +184,17 @@ module frame_channel() {
   translate([0,sensor_length+play+ramp_top_length,0])
   cube([sensor_width, channel_width, base_height]);
 }
+
+
+
+translate([0,ramp_bottom_length,0])
+    union() {
+        frame_all();
+
+        /* translate([sensor_width,0,0])
+        frame_all(); */
+    }
+
 
 /* color("red")
 sensor(); */
