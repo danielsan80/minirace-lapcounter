@@ -1,4 +1,4 @@
-
+include <connector.scad>
 
 $fn=100;
 default_thick = 2;
@@ -58,6 +58,9 @@ channel_width = 30;
 
 frame_end_wall_length=play*2 + sensor_length + channel_width + ramp_top_length;
 frame_end_wall_connector_void_length=50;
+
+
+module_connector_height = sensor_spot_height - 1;
 
 module sensor() {
     translate([0,0,quartz_height])
@@ -214,11 +217,36 @@ module channel() {
 
 
 
+
+module frame_module_connectors_void() {
+
+    connector_height = sensor_spot_height - 1;
+
+    translate([0,-play-ramp_top_length/2,0])
+    connector(void=true, height = module_connector_height);
+
+    translate([sensor_spot_width,-play-ramp_top_length/2,0])
+    connector(void=true, height = module_connector_height);
+
+    translate([0,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length/2,0])
+    connector(void=true, height = module_connector_height);
+
+    translate([sensor_spot_width,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length/2,0])
+    connector(void=true, height = module_connector_height);
+}
+
+
 module frame_module() {
-    ramp_in();
-    sensor_spot();
-    channel();
-    ramp_out();
+
+    difference() {
+        union() {
+            ramp_in();
+            sensor_spot();
+            channel();
+            ramp_out();
+        }
+        frame_module_connectors_void();
+    }
 }
 
 
@@ -303,8 +331,20 @@ module frame_end() {
     ramp_out();
 }
 
+module frame_module_connectors() {
+
+    for (i = [0:3]) {
+        translate([0,-i*5,0])
+            connector(height = module_connector_height-0.5);
+    }
+
+}
+
 
 frame_module();
+
+translate([5, -10, 0])
+frame_module_connectors();
 
 
 /* color("blue")
