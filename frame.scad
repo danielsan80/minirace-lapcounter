@@ -1,3 +1,5 @@
+
+
 $fn=100;
 default_thick = 2;
 min_thick = 0.3;
@@ -54,6 +56,9 @@ base_renforcement_width = 2;
 
 channel_width = 30;
 
+frame_end_wall_length=play*2 + sensor_length + channel_width + ramp_top_length;
+frame_end_wall_connector_void_length=50;
+
 module sensor() {
     translate([0,0,quartz_height])
         union() {
@@ -107,7 +112,7 @@ module sensor_spot_base() {
         cube([sensor_width, sensor_length, base_height]);
 }
 
-module sensor_spot_connection_left_void() {
+/* module sensor_spot_connection_left_void() {
 
     translate([-play,-play+sensor_y_padding,0])
     cube([(sensor_width-base_crossbar_width)/2+play, sensor_length-sensor_y_padding*2+play*2, a_few]);
@@ -119,7 +124,7 @@ module sensor_spot_connection_right_void() {
     translate([(sensor_width-base_crossbar_width)/2+base_crossbar_width,-play+sensor_y_padding,0])
     cube([(sensor_width-base_crossbar_width)/2+play, sensor_length-sensor_y_padding*2+play*2, a_few]);
 
-}
+} */
 
 module sensor_spot_connector_void() {
     translate([sensor_x_padding-play, sensor_length - a_few/2, base_height])
@@ -209,7 +214,7 @@ module channel() {
 
 
 
-module frame_all() {
+module frame_module() {
     ramp_in();
     sensor_spot();
     channel();
@@ -219,6 +224,7 @@ module frame_all() {
 
 
 
+/* OLD
 module frame() {
 
     difference() {
@@ -253,15 +259,52 @@ module frame() {
         }
 
 
-}
+} */
 
-module frame_channel() {
+/* OLD
+ module frame_channel() {
   translate([0,sensor_length+play+ramp_top_length,0])
   cube([sensor_width, channel_width, base_height]);
+} */
+
+
+module frame_end_base() {
+
+    translate([0,-play,0])
+    cube([sensor_width, play*2 + sensor_length + channel_width + ramp_top_length,base_height]);
+
+}
+
+module frame_end_wall() {
+
+    translate([0,-play,0])
+    cube([ramp_top_length, frame_end_wall_length,sensor_spot_height]);
+
+}
+
+module frame_end_wall_connector_void() {
+
+    translate([0,-play+(frame_end_wall_length-frame_end_wall_connector_void_length)/2,0])
+    cube([ramp_top_length, frame_end_wall_connector_void_length,sensor_spot_height]);
+
 }
 
 
-frame_all();
+module frame_end() {
+    ramp_in();
+    frame_end_base();
+    difference() {
+
+        frame_end_wall();
+        frame_end_wall_connector_void();
+    }
+//    sensor_spot();
+//    channel();
+    ramp_out();
+}
+
+
+frame_module();
 
 
 /* color("blue")
@@ -270,14 +313,17 @@ sensor(); */
 
 /* translate([0,ramp_bottom_length,0])
     union() {
-        frame_all();
+        translate([-sensor_width,0,0])
+        frame_end();
+
+        frame_module();
 
         translate([sensor_width,0,0])
-        frame_all();
+        frame_module();
     } */
 
 
-/*
+/* OLD
 frame();
 
 frame_channel(); */
