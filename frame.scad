@@ -15,9 +15,9 @@ sensor_thick = 1.5;
 
 sensor_hole_d = 2.7;
 sensor_hole_r = sensor_hole_d/2;
-sensor_back_hole_x = 4.9 + sensor_hole_r;
-sensor_back_hole_y = 5.1 + sensor_hole_r;
-sensor_front_hole_x = 0.8 + sensor_hole_r ;
+sensor_back_hole_x = 5.8 + sensor_hole_r + sensor_width_margin;
+sensor_back_hole_y = 5.6 + sensor_hole_r;
+sensor_front_hole_x = 1.1 + sensor_hole_r + sensor_width_margin ;
 sensor_front_hole_y = 14.3 + sensor_hole_r;
 
 
@@ -358,8 +358,8 @@ module clips() {
 
 frame_module();
 
-translate([5, -10, 0])
-clips();
+//translate([5, -10, 0])
+//clips();
 
 
 /* color("blue")
