@@ -56,6 +56,10 @@ base_renforcement_width = 2;
 
 channel_width = 30;
 
+channel_cover_leg_side = 1.5;
+channel_cover_leg_thick = 1.5;
+channel_cover_leg_back_length = sensor_x_padding-play;
+
 frame_end_wall_length=play*2 + sensor_length + channel_width + ramp_top_length;
 frame_end_wall_connector_void_length=50;
 
@@ -264,15 +268,31 @@ module frame_module() {
     }
 }
 
-channel_cover_leg_side = 1.5;
+
 module channel_cover_leg() {
     cube([channel_cover_leg_side, channel_cover_leg_side, sensor_spot_height-base_height]);
 }
 
-module channel_cover() {
-    translate([0,sensor_length+play*2+sensor_spot_y_padding,sensor_spot_height - base_height])
-    cube([sensor_width, channel_width-play*2, base_height]);
+module channel_cover_leg_back() {
+    cube([sensor_x_padding-play, channel_cover_leg_thick, sensor_spot_height-base_height]);
+}
 
+module channel_cover_leg_front() {
+    cube([sensor_width, channel_cover_leg_thick, sensor_spot_height-base_height]);
+}
+
+module channel_cover_legs() {
+    translate([0,sensor_length+play*2+sensor_spot_y_padding,base_height])
+    channel_cover_leg_back();
+
+    translate([sensor_width-channel_cover_leg_back_length ,sensor_length+play*2+sensor_spot_y_padding,base_height])
+    channel_cover_leg_back();
+
+    translate([0,sensor_length+play*2+sensor_spot_y_padding + channel_width -play*2 -channel_cover_leg_side ,base_height])
+    channel_cover_leg_front();
+}
+
+module channel_cover_legs_old() {
     translate([0,sensor_length+play*2+sensor_spot_y_padding,base_height])
     channel_cover_leg();
 
@@ -291,10 +311,15 @@ module channel_cover() {
 
 }
 
+module channel_cover() {
+    translate([0,sensor_length+play*2+sensor_spot_y_padding,sensor_spot_height - base_height])
+    cube([sensor_width, channel_width-play*2, base_height]);
 
-translate([0,0,sensor_spot_height])
-rotate([0,180,0])
-channel_cover();
+    channel_cover_legs();
+
+}
+
+
 
 
 
@@ -387,7 +412,13 @@ module clips() {
 }
 
 
-//frame_module();
+
+//translate([0,0,sensor_spot_height])
+//rotate([0,180,0])
+channel_cover();
+
+
+frame_module();
 
 //translate([5, -10, 0])
 //clips();
@@ -397,16 +428,16 @@ module clips() {
 sensor(); */
 
 
-/* translate([0,ramp_bottom_length,0])
+/* translate([0,ramp_bottom_length,0]) */
     union() {
         translate([-sensor_width,0,0])
         frame_end();
 
-        frame_module();
+        /* frame_module();
 
         translate([sensor_width,0,0])
-        frame_module();
-    } */
+        frame_module(); */
+    }
 
 
 /* OLD
