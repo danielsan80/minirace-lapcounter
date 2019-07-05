@@ -264,6 +264,37 @@ module frame_module() {
     }
 }
 
+channel_cover_leg_side = 1.5;
+module channel_cover_leg() {
+    cube([channel_cover_leg_side, channel_cover_leg_side, sensor_spot_height-base_height]);
+}
+
+module channel_cover() {
+    translate([0,sensor_length+play*2+sensor_spot_y_padding,sensor_spot_height - base_height])
+    cube([sensor_width, channel_width-play*2, base_height]);
+
+    translate([0,sensor_length+play*2+sensor_spot_y_padding,base_height])
+    channel_cover_leg();
+
+    translate([sensor_width-channel_cover_leg_side ,sensor_length+play*2+sensor_spot_y_padding,base_height])
+    channel_cover_leg();
+
+    translate([0,sensor_length+play*2+sensor_spot_y_padding + channel_width -play*2 -channel_cover_leg_side ,base_height])
+    channel_cover_leg();
+
+    translate([sensor_width-channel_cover_leg_side ,sensor_length+play*2+sensor_spot_y_padding+ channel_width -play*2 -channel_cover_leg_side,base_height])
+    channel_cover_leg();
+
+
+    /* translate([0,sensor_length+play*2+sensor_spot_y_padding,base_height + play])
+    cube([sensor_width, channel_width-play*2, sensor_spot_height-base_height-play]); */
+
+}
+
+
+translate([0,0,sensor_spot_height])
+rotate([0,180,0])
+channel_cover();
 
 
 
@@ -356,7 +387,7 @@ module clips() {
 }
 
 
-frame_module();
+//frame_module();
 
 //translate([5, -10, 0])
 //clips();
