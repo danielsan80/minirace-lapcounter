@@ -1,4 +1,4 @@
-include <connector.scad>
+include <boneclip.scad>
 
 $fn=100;
 default_thick = 2;
@@ -43,7 +43,7 @@ sensor_spot_height = quartz_height + sensor_thick + sensor_spot_excess;
 sensor_void_length = sensor_length + play*2 - sensor_y_padding*2;
 
 /* ramp_bottom_length = 20; */
-ramp_bottom_length = 6;
+ramp_bottom_length = 60;
 ramp_top_length = sensor_spot_y_padding;
 ramp_height = sensor_spot_height;
 
@@ -223,14 +223,14 @@ module channel() {
 
 
 module clip() {
-    connector(
+    boneclip(
         height = clip_height-0.5,
         r = clip_r,
         width = clip_width
     );
 }
 module clip_void() {
-    connector(
+    boneclip(
         void=true,
         height = clip_height,
         r = clip_r,
@@ -415,10 +415,10 @@ module clips() {
 
 //translate([0,0,sensor_spot_height])
 //rotate([0,180,0])
-channel_cover();
+//channel_cover();
 
 
-frame_module();
+//frame_module();
 
 //translate([5, -10, 0])
 //clips();
@@ -428,16 +428,18 @@ frame_module();
 sensor(); */
 
 
-/* translate([0,ramp_bottom_length,0]) */
+/* translate([0,ramp_bottom_length,0])
     union() {
         translate([-sensor_width,0,0])
         frame_end();
 
-        /* frame_module();
+        frame_module();
 
         translate([sensor_width,0,0])
-        frame_module(); */
+        frame_module();
     }
+*/
+
 
 
 /* OLD

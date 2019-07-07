@@ -1,4 +1,4 @@
-module connector(
+module boneclip(
     void = false,
     r = 1.5,
     dinstance = 1,
