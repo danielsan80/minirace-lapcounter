@@ -1,4 +1,4 @@
-include <rule.scad>
+include <modules/rule.scad>
 
 /*
 ## upright_ext1 ##
@@ -49,7 +49,7 @@ translate([1.5-38.82,0,77.55+38.676])
 import("gate/angle_L.stl");
 
 translate([97.9,0,88.1+38.676])
-import("gate/mods/traverse_ext1_LR.stl");
+import("gate/mods/traverse_ext1_LR_fixed.stl");
 
 translate([203.0+38.75,0,77.55+38.676])
 import("gate/angle_R.stl");

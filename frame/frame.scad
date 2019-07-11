@@ -1,4 +1,4 @@
-include <boneclip.scad>
+include <../modules/boneclip.scad>
 
 $fn=100;
 default_thick = 2;

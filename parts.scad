@@ -1,5 +1,6 @@
 include <frame/frame.scad>
 include <modules/rule.scad>
+include <modules/boneclip.scad>
 
 translate([-sensor_width,0,0])
     frame_end();
