@@ -25,7 +25,8 @@ sensor_front_hole_y = 14.3 + sensor_hole_r;
 quartz_length = 10;
 quartz_width = 3.5;
 quartz_height = 4.9 + 0.5 - sensor_thick;
-quartz_margin = 1;
+quartz_margin_x = 2;
+quartz_margin_y = 1;
 
 quartz_x_offset = 0.5;
 quartz_y_offset = 2;
@@ -141,8 +142,8 @@ module sensor_spot_connector_void() {
 }
 
 module sensor_spot_quartz_void() {
-    translate([0, sensor_length - quartz_length-quartz_y_offset-quartz_margin, 0])
-        cube([quartz_width+quartz_x_offset+quartz_margin, quartz_length+quartz_y_offset+quartz_margin, a_few]);
+    translate([0, sensor_length - quartz_length-quartz_y_offset-quartz_margin_y, 0])
+        cube([quartz_width+quartz_x_offset+quartz_margin_x, quartz_length+quartz_y_offset+quartz_margin_y, a_few]);
 }
 
 module sensor_spot_back_colmuns() {

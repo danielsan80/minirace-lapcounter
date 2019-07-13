@@ -29,7 +29,7 @@ module clips_void_part1() {
         translate([sensor_spot_width*i+sensor_spot_width/2,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length,0])
         rotate([0,0,90])
             clip_void();
-        
+
          translate([sensor_spot_width*i+sensor_spot_width/2,-play-ramp_top_length,0])
         rotate([0,0,90])
             clip_void();
@@ -61,17 +61,28 @@ translate([sensor_width*9,0,0])
     frame_end();
  */
 
+
+ /* FRAME MODULE x4 */
 difference() {
     for (i = [0:3]) {
         translate([sensor_width*i,0,0])
             union() {
-                /* channel_cover(); */
+//                channel_cover();
                 frame_module_part1();
-                /* color("blue")
-                sensor(); */
-                /* ramp_out(); */
+//                color("blue")
+//                sensor();
+//                ramp_out();
             }
     }
     clips_void_part1();
 }
 
+
+/* CHANNEL COVER x4 */
+/* rotate([180,0,0])
+for (i = [0:3]) {
+   translate([sensor_width*i,0,0])
+       union() {
+           channel_cover();
+       }
+} */
