@@ -43,7 +43,7 @@ sensor_spot_height = quartz_height + sensor_thick + sensor_spot_excess;
 sensor_void_length = sensor_length + play*2 - sensor_y_padding*2;
 
 /* ramp_bottom_length = 20; */
-ramp_bottom_length = 60;
+ramp_bottom_length = 80;
 ramp_top_length = sensor_spot_y_padding;
 ramp_height = sensor_spot_height;
 

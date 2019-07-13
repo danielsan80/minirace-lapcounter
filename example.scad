@@ -12,10 +12,10 @@ translate([sensor_width*9,0,0])
 for (i = [0:7]) {
     translate([sensor_width*i,0,0])
     union() {
-        channel_cover();
+//        channel_cover();
         frame_module();
-        color("blue")
-        sensor();
+//        color("blue")
+//        sensor();
     }
 }
 

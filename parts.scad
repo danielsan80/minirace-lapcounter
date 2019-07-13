@@ -1,76 +1,77 @@
 include <frame/frame.scad>
 include <modules/rule.scad>
-include <modules/boneclip.scad>
-
-translate([-sensor_width,0,0])
-    frame_end();
-
-translate([sensor_width*9,0,0])
-    mirror([1,0,0])
-    frame_end();
 
 
-for (i = [0:7]) {
-    translate([sensor_width*i,0,0])
-    union() {
-        channel_cover();
-        frame_module();
-        color("blue")
-        sensor();
+module clips_void_part1() {
+
+    translate([0,-play-ramp_top_length/2,0])
+    clip_void();
+
+    translate([0,sensor_length+play+ramp_top_length/2,0])
+    clip_void();
+
+    translate([0,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length/2,0])
+    clip_void();
+
+
+
+    translate([sensor_spot_width*4,-play-ramp_top_length/2,0])
+    clip_void();
+
+    translate([sensor_spot_width*4,sensor_length+play+ramp_top_length/2,0])
+    clip_void();
+
+    translate([sensor_spot_width*4,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length/2,0])
+    clip_void();
+
+
+    for (i = [0:3]) {
+        translate([sensor_spot_width*i+sensor_spot_width/2,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length,0])
+        rotate([0,0,90])
+            clip_void();
+        
+         translate([sensor_spot_width*i+sensor_spot_width/2,-play-ramp_top_length,0])
+        rotate([0,0,90])
+            clip_void();
+    }
+}
+
+
+module frame_module_part1() {
+
+    difference() {
+        union() {
+            /* ramp_in(); */
+            sensor_spot();
+            channel();
+            /* ramp_out(); */
+        }
+        /* clips_void(); */
     }
 }
 
 
 
 
+/* translate([-sensor_width,0,0])
+    frame_end();
 
+translate([sensor_width*9,0,0])
+    mirror([1,0,0])
+    frame_end();
+ */
 
-
-
-
-
-translate([-sensor_width,-120,0])
-rule(x=403);
-
-translate([-60,-play-ramp_bottom_length,0])
-rule(y=215);
-
-
-translate([0,-80,0])
-rule(x=321);
-
-
-/* GATE */
-//translate([-sensor_width/2,(sensor_length+sensor_spot_y_padding+channel_width)/2,sensor_spot_height])
-//union() {
-//    scale([1.77,1.77,1.77])
-//    import("gate/gate.stl");
-//}
-//
-//
-//translate([-130,0,0])
-//rule(z=192);
-//
-//translate([-90,0,0])
-//rule(z=160.5);
-
-/* GATE EXT1 */
-
-upright_width = 22;
-gate_ratio = 1.325;
-
-translate([
-    -sensor_width+(upright_width*gate_ratio)/2,
-    (sensor_length+sensor_spot_y_padding+channel_width)/2,
-    sensor_spot_height])
-union() {
-    scale([gate_ratio,gate_ratio,gate_ratio])
-    import("gate/mods/gate_ext1.stl");
+difference() {
+    for (i = [0:3]) {
+        translate([sensor_width*i,0,0])
+            union() {
+                /* channel_cover(); */
+                frame_module_part1();
+                /* color("blue")
+                sensor(); */
+                /* ramp_out(); */
+            }
+    }
+    clips_void_part1();
 }
 
-
-translate([-130,0,0])
-rule(z=196.4);
-
-translate([-90,0,0])
-rule(z=173.5);
