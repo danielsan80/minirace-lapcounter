@@ -63,7 +63,7 @@ translate([sensor_width*9,0,0])
 
 
  /* FRAME MODULE x4 */
-difference() {
+/* difference() {
     for (i = [0:3]) {
         translate([sensor_width*i,0,0])
             union() {
@@ -75,7 +75,7 @@ difference() {
             }
     }
     clips_void_part1();
-}
+} */
 
 
 /* CHANNEL COVER x4 */
@@ -86,3 +86,7 @@ for (i = [0:3]) {
            channel_cover();
        }
 } */
+
+
+/* CHANNEL COVER x6 */
+clips();

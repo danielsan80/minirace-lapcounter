@@ -227,7 +227,8 @@ module clip() {
     boneclip(
         height = clip_height-0.5,
         r = clip_r,
-        width = clip_width
+        width = clip_width,
+        dinstance = 1 -0.2
     );
 }
 module clip_void() {
@@ -405,7 +406,7 @@ module frame_end() {
 
 module clips() {
 
-    for (i = [0:3]) {
+    for (i = [0:5]) {
         translate([0,-i*5,0])
             clip();
     }
