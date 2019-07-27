@@ -72,8 +72,30 @@ module print_frame_block_body_clips_void(n=4) {
         rotate([0,0,90])
             clip_void();
 
-         translate([sensor_spot_width*i+sensor_spot_width/2,-play-y_padding_back,0])
+        translate([sensor_spot_width*i+sensor_spot_width/2,-play-y_padding_back,0])
         rotate([0,0,90])
             clip_void();
     }
+}
+
+module print_frame_end_body_clips_void() {
+
+
+    translate([frame_end_width,-play-y_padding_back/2,0])
+    clip_void();
+
+    translate([frame_end_width,sensor_length+play+y_padding_center/2,0])
+    clip_void();
+
+    translate([frame_end_width,sensor_length+play+y_padding_center+channel_width+y_padding_front/2,0])
+    clip_void();
+
+
+    translate([frame_end_width/2,-play-frame_end_y_padding_back + frame_end_body_length,0])
+    rotate([0,0,90])
+        clip_void();
+
+    translate([frame_end_width/2,-play-frame_end_y_padding_back,0])
+    rotate([0,0,90])
+        clip_void();
 }
