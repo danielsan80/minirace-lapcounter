@@ -15,6 +15,7 @@ module sim_frame_rules() {
 /** FRAME **/
 sim_frame_block(1);
 sim_frame_end_left();
+sim_frame_end_door_left();
 /* sim_frame_end_right(); */
 
 /** COVER **/
