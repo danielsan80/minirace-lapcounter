@@ -46,3 +46,13 @@ module sensor() {
                 cube([quartz_width,quartz_length,quartz_height]);
         }
 }
+
+module sim_sensor(n=8) {
+    for (i = [0:n-1]) {
+        translate([sensor_width*i,0,0])
+        union() {
+            color("blue")
+            sensor();
+        }
+    }
+}

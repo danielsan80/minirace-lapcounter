@@ -21,6 +21,10 @@ sim_frame_end_right();
 sim_channel_cover_array();
 
 
+/** SENSOR **/
+sim_sensor();
+
+
 
 /* GATE */
 /* sim_gate(); */
