@@ -1,7 +1,7 @@
 /* ramp_bottom_length = 20; */
 ramp_bottom_length = 80;
 ramp_top_length = y_padding;
-ramp_height = sensor_spot_height;
+ramp_height = frame_height;
 
 module ramp_in() {
     hull() {

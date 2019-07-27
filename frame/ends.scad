@@ -16,18 +16,18 @@ module frame_end_base() {
 
 module frame_end_wall() {
     translate([0,-play-frame_end_y_padding_back,0])
-    cube([frame_end_x_padding_left, frame_end_body_length, sensor_spot_height]);
+    cube([frame_end_x_padding_left, frame_end_body_length, frame_height]);
 
     translate([0,-play-frame_end_y_padding_back,0])
-    cube([sensor_width,frame_end_y_padding_back, sensor_spot_height]);
+    cube([sensor_width,frame_end_y_padding_back, frame_height]);
 
     translate([0,-play-frame_end_y_paddings+frame_end_body_length,0])
-    cube([sensor_width,frame_end_y_padding_back, sensor_spot_height]);
+    cube([sensor_width,frame_end_y_padding_back, frame_height]);
 }
 
 module frame_end_wall_connector_void() {
     translate([0,-play-frame_end_y_padding_back+(frame_end_body_length-frame_end_wall_connector_void_length)/2,0])
-    cube([frame_end_x_padding_left, frame_end_wall_connector_void_length,sensor_spot_height]);
+    cube([frame_end_x_padding_left, frame_end_wall_connector_void_length,frame_height]);
 }
 
 

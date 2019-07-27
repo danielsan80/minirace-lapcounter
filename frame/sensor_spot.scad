@@ -7,6 +7,7 @@ sensor_spot_y_paddings = sensor_spot_y_padding_back+sensor_spot_y_padding_front;
 sensor_spot_width = sensor_width;
 sensor_spot_length = sensor_length + play*2 + sensor_spot_y_paddings;
 sensor_spot_height = quartz_height + sensor_thick + sensor_spot_excess;
+frame_height = sensor_spot_height;
 
 sensor_void_length = sensor_length + play*2 - sensor_y_padding*2;
 

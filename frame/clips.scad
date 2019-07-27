@@ -1,4 +1,4 @@
-clip_height = sensor_spot_height - 1;
+clip_height = frame_height - 1;
 clip_r = 1.1;
 clip_width = 1.5;
 

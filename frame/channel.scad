@@ -11,7 +11,7 @@ channel_y_paddings = channel_y_padding_back+channel_y_padding_front;
 
 module channel_body() {
     translate([0,sensor_length+play,0])
-    cube([sensor_width, channel_width+channel_y_paddings, sensor_spot_height]);
+    cube([sensor_width, channel_width+channel_y_paddings, frame_height]);
 }
 module channel_cavity() {
     translate([-play,sensor_length+play+channel_y_padding_back,base_height])
@@ -32,15 +32,15 @@ module channel() {
 }
 
 module channel_cover_leg() {
-    cube([channel_cover_leg_side, channel_cover_leg_side, sensor_spot_height-base_height]);
+    cube([channel_cover_leg_side, channel_cover_leg_side, frame_height-base_height]);
 }
 
 module channel_cover_leg_back() {
-    cube([sensor_x_padding-play, channel_cover_leg_thick, sensor_spot_height-base_height]);
+    cube([sensor_x_padding-play, channel_cover_leg_thick, frame_height-base_height]);
 }
 
 module channel_cover_leg_front() {
-    cube([sensor_width, channel_cover_leg_thick, sensor_spot_height-base_height]);
+    cube([sensor_width, channel_cover_leg_thick, frame_height-base_height]);
 }
 
 module channel_cover_legs() {
@@ -69,12 +69,12 @@ module channel_cover_legs_old() {
 
 
     /* translate([0,sensor_length+play*2+channel_y_padding,base_height + play])
-    cube([sensor_width, channel_width-play*2, sensor_spot_height-base_height-play]); */
+    cube([sensor_width, channel_width-play*2, frame_height-base_height-play]); */
 
 }
 
 module channel_cover() {
-    translate([0,sensor_length+play+channel_y_padding_back+play,sensor_spot_height - base_height])
+    translate([0,sensor_length+play+channel_y_padding_back+play,frame_height - base_height])
     cube([sensor_width, channel_width-play*2, base_height]);
 
     channel_cover_legs();
