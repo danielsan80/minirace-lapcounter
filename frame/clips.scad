@@ -22,16 +22,16 @@ module clip_void() {
 
 module clips_void() {
 
-    translate([0,-play-ramp_top_length/2,0])
+    translate([0,-play-y_padding_back/2,0])
     clip_void();
 
-    translate([sensor_spot_width,-play-ramp_top_length/2,0])
+    translate([sensor_spot_width,-play-y_padding_back/2,0])
     clip_void();
 
-    translate([0,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length/2,0])
+    translate([0,sensor_length+play+y_padding_center+channel_width+y_padding_front/2,0])
     clip_void();
 
-    translate([sensor_spot_width,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length/2,0])
+    translate([sensor_spot_width,sensor_length+play+y_padding_center+channel_width+y_padding_front/2,0])
     clip_void();
 }
 
@@ -46,33 +46,33 @@ module print_clips(n=6) {
 
 module print_frame_block_body_clips_void(n=4) {
 
-    translate([0,-play-ramp_top_length/2,0])
+    translate([0,-play-y_padding_back/2,0])
     clip_void();
 
-    translate([0,sensor_length+play+ramp_top_length/2,0])
+    translate([0,sensor_length+play+y_padding_center/2,0])
     clip_void();
 
-    translate([0,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length/2,0])
+    translate([0,sensor_length+play+y_padding_center+channel_width+y_padding_front/2,0])
     clip_void();
 
 
 
-    translate([sensor_spot_width*n,-play-ramp_top_length/2,0])
+    translate([sensor_spot_width*n,-play-y_padding_back/2,0])
     clip_void();
 
-    translate([sensor_spot_width*n,sensor_length+play+ramp_top_length/2,0])
+    translate([sensor_spot_width*n,sensor_length+play+y_padding_center/2,0])
     clip_void();
 
-    translate([sensor_spot_width*n,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length/2,0])
+    translate([sensor_spot_width*n,sensor_length+play+y_padding_center+channel_width+y_padding_front/2,0])
     clip_void();
 
 
     for (i = [0:n-1]) {
-        translate([sensor_spot_width*i+sensor_spot_width/2,sensor_length+play+sensor_spot_y_padding+channel_width+ramp_top_length,0])
+        translate([sensor_spot_width*i+sensor_spot_width/2,sensor_length+play+y_padding_center+channel_width+y_padding_front,0])
         rotate([0,0,90])
             clip_void();
 
-         translate([sensor_spot_width*i+sensor_spot_width/2,-play-ramp_top_length,0])
+         translate([sensor_spot_width*i+sensor_spot_width/2,-play-y_padding_back,0])
         rotate([0,0,90])
             clip_void();
     }

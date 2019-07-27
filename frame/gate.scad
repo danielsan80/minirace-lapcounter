@@ -4,7 +4,7 @@ module sim_gate_ext1() {
 
     translate([
         -sensor_width+(upright_width*gate_ratio)/2,
-        (sensor_length+sensor_spot_y_padding+channel_width)/2,
+        (sensor_length+y_padding_center+channel_width)/2,
         sensor_spot_height]
     )
     union() {
@@ -20,12 +20,12 @@ module sim_gate_ext1_rules() {
     rule(z=196.4);
 
     translate([-90,0,0])
-    rule(z=173.5);    
+    rule(z=173.5);
 }
 
 
 module sim_gate() {
-    translate([-sensor_width/2,(sensor_length+sensor_spot_y_padding+channel_width)/2,sensor_spot_height])
+    translate([-sensor_width/2,(sensor_length+y_padding_center+channel_width)/2,sensor_spot_height])
     union() {
         scale([1.77,1.77,1.77])
         import("gate/gate.stl");

@@ -4,9 +4,9 @@ module frame_block_body() {
 }
 
 module frame_block() {
-    ramp_in();
+    /* ramp_in(); */
     frame_block_body();
-    ramp_out();
+    /* ramp_out(); */
 }
 
 

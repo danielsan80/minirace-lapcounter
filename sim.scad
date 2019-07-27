@@ -30,10 +30,10 @@ sim_sensor();
 /* sim_gate(); */
 
 /* GATE EXT1 */
-sim_gate_ext1();
+/* sim_gate_ext1(); */
 
 
 /** RULES **/
 /* sim_frame_rules(); */
 /* sim_gate_rules(); */
-/* sim_gate_ext_rules(); */
+/* sim_gate_ext1_rules(); */

@@ -1,7 +1,11 @@
 sensor_spot_excess = 0.2;
-sensor_spot_y_padding = 4;
+
+sensor_spot_y_padding_back = y_padding_back;
+sensor_spot_y_padding_front = y_padding_center;
+sensor_spot_y_paddings = sensor_spot_y_padding_back+sensor_spot_y_padding_front;
+
 sensor_spot_width = sensor_width;
-sensor_spot_length = sensor_length + play*2 + sensor_spot_y_padding*2;
+sensor_spot_length = sensor_length + play*2 + sensor_spot_y_paddings;
 sensor_spot_height = quartz_height + sensor_thick + sensor_spot_excess;
 
 sensor_void_length = sensor_length + play*2 - sensor_y_padding*2;
@@ -13,7 +17,7 @@ base_renforcement_height = 3;
 base_renforcement_width = 2;
 
 module sensor_spot_body() {
-    translate([0, -play - sensor_spot_y_padding,0])
+    translate([0, -play -sensor_spot_y_padding_back,0])
         cube([sensor_spot_width, sensor_spot_length, sensor_spot_height]);
 }
 
