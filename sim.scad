@@ -18,7 +18,7 @@ sim_frame_end_left();
 sim_frame_end_right();
 
 /** COVER **/
-sim_channel_cover_array();
+sim_channel_cover();
 
 
 /** SENSOR **/

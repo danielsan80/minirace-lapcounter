@@ -73,7 +73,7 @@ module channel_cover() {
 
 }
 
-module sim_channel_cover_array(n=8) {
+module sim_channel_cover(n=8) {
     for (i = [0:n-1]) {
         translate([sensor_width*i,0,0])
         channel_cover();
