@@ -1,8 +1,8 @@
-frame_end_door_length=58.6;
+frame_end_door_length=58.4;
 frame_end_door_width=8.1;
 frame_end_door_inner_width=6;
 frame_end_door_height=8.6;
-frame_end_door_base_thick=3;
+frame_end_door_base_thick=2;
 
 frame_end_y_padding_back = y_padding_back;
 frame_end_y_padding_center = y_padding_center;
@@ -15,6 +15,8 @@ frame_end_x_padding_right = y_padding_back;
 frame_end_body_length = frame_end_y_paddings + play + sensor_length + play + y_padding_center + channel_width;
 frame_end_width = sensor_width;
 
+
+frame_end_cover_leg_thick = 1.5;
 
 module frame_end_base() {
     translate([0,-play-frame_end_y_padding_back,0])
@@ -108,9 +110,137 @@ module frame_end_door_dock() {
 }
 
 
+module frame_end_cover_leg_back() {
+    cube([frame_end_width-frame_end_x_padding_left-play, frame_end_cover_leg_thick, frame_height-base_height]);
+}
+
+module frame_end_cover_leg_front() {
+    frame_end_cover_leg_back();
+}
+
+module frame_end_cover_leg_right() {
+    translate([
+        0,
+        frame_end_y_padding_center+play*2+frame_end_cover_leg_thick,
+        0
+    ])
+    cube([
+        frame_end_x_padding_right,
+        frame_end_cover_leg_thick,
+        frame_height-base_height
+    ]);
+
+    cube([
+        frame_end_x_padding_right,
+        frame_end_cover_leg_thick,
+        frame_height-base_height
+    ]);
+/*
+    cube([
+        frame_end_cover_leg_thick,
+        frame_end_y_padding_center+play*2+frame_end_cover_leg_thick*2,
+        frame_height-base_height
+    ]); */
+}
+
+module frame_end_cover_leg_left() {
+    translate([0,frame_end_cover_leg_thick+play+default_thick+(frame_end_door_length+play*2)+default_thick+play,0])
+    cube([
+        frame_end_x_padding_left,
+        frame_end_cover_leg_thick,
+        frame_height-base_height
+    ]);
+
+    cube([
+        frame_end_x_padding_left,
+        frame_end_cover_leg_thick,
+        frame_height-base_height
+    ]);
+}
+
+
+module frame_end_cover_legs() {
+    translate([
+        frame_end_x_padding_left+play,
+        0,
+        base_height
+    ])
+    frame_end_cover_leg_back();
+
+    translate([
+        frame_end_x_padding_left+play,
+        -play-frame_end_y_padding_back+frame_end_body_length-frame_end_y_padding_front-play -frame_end_cover_leg_thick,
+        base_height
+    ])
+    frame_end_cover_leg_front();
+
+    translate([
+        frame_end_width-frame_end_x_padding_right,
+        sensor_length-frame_end_cover_leg_thick,
+        base_height
+    ])
+    frame_end_cover_leg_right();
+
+    translate([
+        frame_end_x_padding_left+play,
+        -play-frame_end_y_padding_back+(frame_end_body_length-(frame_end_door_length+play*2))/2-default_thick-play-frame_end_cover_leg_thick,
+        base_height
+    ])
+    frame_end_cover_leg_left();
+}
+
+
+module frame_end_cover_plate() {
+
+    translate([
+        frame_end_x_padding_left+play,
+        0,
+        frame_height - base_height
+    ])
+    cube([
+        frame_end_width-frame_end_x_padding_left-play,
+        frame_end_body_length-frame_end_y_paddings-play*2,
+        base_height
+    ]);
+
+    translate([
+        0,
+        -play-frame_end_y_padding_back+(frame_end_body_length-frame_end_door_length)/2,
+        frame_height - base_height
+    ])
+    cube([
+        frame_end_x_padding_left+play,
+        frame_end_door_length,
+        base_height
+    ]);
+
+}
+
+module frame_end_cover() {
+    /* translate([0,sensor_length+play+channel_y_padding_back+play,frame_height - base_height])
+    cube([sensor_width, channel_width-play*2, base_height]); */
+
+    frame_end_cover_plate();
+
+    frame_end_cover_legs();
+
+}
+
+
 module sim_frame_end_left() {
     translate([-frame_end_width,0,0])
     frame_end();
+}
+
+module sim_frame_end_cover_left() {
+    translate([-frame_end_width,0,0])
+    frame_end_cover();
+}
+
+module sim_frame_end_cover_right() {
+    translate([frame_end_width*9,0,0])
+    mirror([1,0,0])
+    frame_end_cover();
 }
 
 module sim_frame_end_door_left() {
