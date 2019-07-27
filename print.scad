@@ -37,7 +37,7 @@ module clips_void_part1() {
 }
 
 
-module frame_module_part1() {
+module frame_block_part1() {
 
     difference() {
         union() {
@@ -68,7 +68,7 @@ translate([sensor_width*9,0,0])
         translate([sensor_width*i,0,0])
             union() {
 //                channel_cover();
-                frame_module_part1();
+                frame_block_part1();
 //                color("blue")
 //                sensor();
 //                ramp_out();

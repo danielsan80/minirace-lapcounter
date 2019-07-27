@@ -257,7 +257,7 @@ module clips_void() {
 }
 
 
-module frame_module() {
+module frame_block() {
 
     difference() {
         union() {
@@ -420,7 +420,7 @@ module clips() {
 //channel_cover();
 
 
-//frame_module();
+//frame_block();
 
 //translate([5, -10, 0])
 //clips();
@@ -435,10 +435,10 @@ sensor(); */
         translate([-sensor_width,0,0])
         frame_end();
 
-        frame_module();
+        frame_block();
 
         translate([sensor_width,0,0])
-        frame_module();
+        frame_block();
     }
 */
 
