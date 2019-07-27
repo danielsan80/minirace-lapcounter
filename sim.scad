@@ -13,7 +13,7 @@ module sim_frame_rules() {
 }
 
 /** FRAME **/
-sim_frame_block_array();
+sim_frame_block();
 sim_frame_end_left();
 sim_frame_end_right();
 

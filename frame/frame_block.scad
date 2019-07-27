@@ -11,7 +11,7 @@ module frame_block() {
 
 
 
-module sim_frame_block_array(n=8) {
+module sim_frame_block(n=8) {
     for (i = [0:n-1]) {
         translate([sensor_width*i,0,0])
         union() {
