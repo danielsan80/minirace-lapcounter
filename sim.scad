@@ -20,7 +20,7 @@ sim_frame_end_right();
 
 
 /** COVER **/
-sim_channel_cover(1);
+sim_channel_cover();
 sim_frame_end_cover_left();
 sim_frame_end_cover_right();
 
@@ -34,7 +34,7 @@ sim_frame_end_cover_right();
 /* sim_gate(); */
 
 /* GATE EXT1 */
-/* sim_gate_ext1(); */
+sim_gate_ext1();
 
 
 /** RULES **/
