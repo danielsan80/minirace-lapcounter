@@ -12,8 +12,12 @@ include <frame/all.scad>
 print_clips(6); */
 
 
-translate([-sensor_width-40,0,0])
-test_print_frame_end_left();
+/* translate([-sensor_width-40,0,0])
+test_print_frame_end_left(); */
 
 /* translate([-sensor_width-40,0,0])
 print_frame_end_body_left(); */
+
+
+rotate([180,0,0])
+sim_frame_end_cover_left();

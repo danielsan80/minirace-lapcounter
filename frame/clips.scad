@@ -91,11 +91,28 @@ module print_frame_end_body_clips_void() {
     clip_void();
 
 
-    translate([frame_end_width/2,-play-frame_end_y_padding_back + frame_end_body_length,0])
+    /* translate([frame_end_width/2,-play-frame_end_y_padding_back + frame_end_body_length,0])
+    rotate([0,0,90])
+        clip_void(); */
+
+    translate([frame_end_x_padding_left+frame_end_x_padding_left/2,-play-frame_end_y_padding_back + frame_end_body_length,0])
     rotate([0,0,90])
         clip_void();
 
-    translate([frame_end_width/2,-play-frame_end_y_padding_back,0])
+    translate([frame_end_width-frame_end_x_padding_right-frame_end_x_padding_right/2,-play-frame_end_y_padding_back + frame_end_body_length,0])
+    rotate([0,0,90])
+        clip_void();
+
+
+    /* translate([frame_end_width/2,-play-frame_end_y_padding_back,0])
+    rotate([0,0,90])
+        clip_void(); */
+
+    translate([frame_end_x_padding_left+frame_end_x_padding_left/2,-play-frame_end_y_padding_back,0])
+    rotate([0,0,90])
+        clip_void();
+
+    translate([frame_end_width-frame_end_x_padding_right-frame_end_x_padding_right/2,-play-frame_end_y_padding_back,0])
     rotate([0,0,90])
         clip_void();
 }
