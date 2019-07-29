@@ -34,7 +34,10 @@ sim_frame_end_cover_right();
 /* sim_gate(); */
 
 /* GATE EXT1 */
-sim_gate_ext1();
+/* sim_gate_ext1(); */
+
+/* GATE SCALED */
+sim_gate_scaled();
 
 
 /** RULES **/

@@ -1,4 +1,22 @@
-module sim_gate_ext1() {
+
+
+module sim_gate_original() {
+    translate([-sensor_width/2,(sensor_length+y_padding_center+channel_width)/2,frame_height])
+    union() {
+        scale([1.77,1.77,1.77])
+        import("gate/1.0_original/gate.stl");
+    }
+}
+
+module sim_gate_original_rules() {
+    translate([-130,0,0])
+    rule(z=192);
+
+    translate([-90,0,0])
+    rule(z=160.5);
+}
+
+module sim_gate_ext() {
     upright_width = 22;
     upright_shift = 0.41225;
     gate_ratio = 1.287908;
@@ -11,7 +29,7 @@ module sim_gate_ext1() {
     union() {
         scale([gate_ratio,gate_ratio,gate_ratio])
         translate([-upright_shift,0,0])
-        import("gate/mods/gate_ext1.stl");
+        import("gate/1.1_ext/gate.stl");
     }
 
     /* translate([-sensor_width,20,0])
@@ -32,7 +50,7 @@ module sim_gate_ext1() {
 
 }
 
-module sim_gate_ext1_rules() {
+module sim_gate_ext_rules() {
     translate([-130,0,0])
     rule(z=196.4);
 
@@ -41,18 +59,44 @@ module sim_gate_ext1_rules() {
 }
 
 
-module sim_gate() {
-    translate([-sensor_width/2,(sensor_length+y_padding_center+channel_width)/2,frame_height])
+
+module sim_gate_scaled() {
+    translate([
+        -sensor_width/2,
+        (sensor_length+y_padding_center+channel_width)/2,
+        frame_height]
+    )
     union() {
-        scale([1.77,1.77,1.77])
-        import("gate/gate.stl");
+        import("gate/1.2_scale/upright_1.2.stl");
+
+        translate([1.4,0.2,149.75])
+        import("gate/1.2_scale/angle_L_1.2.stl");
+
+        translate([175.6,0,149.75+13.6])
+        import("gate/1.2_scale/traverse_1.2.stl");
+
+        translate([360.8,0.2,149.75])
+        import("gate/1.2_scale/angle_R_1.2.stl");
+
+        translate([362.15,0,0])
+        import("gate/1.2_scale/upright_1.2.stl");    
     }
+
 }
 
-module sim_gate_rules() {
-    translate([-130,0,0])
-    rule(z=192);
 
-    translate([-90,0,0])
-    rule(z=160.5);
+/** ALIASES **/
+
+module sim_gate_ext1() {
+    sim_gate_ext();
+}
+module sim_gate_ext1_rules() {
+    sim_gate_ext_rules();
+}
+
+module sim_gate() {
+    sim_gate_original();
+}
+module sim_gate_rules() {
+    sim_gate_original_rules();
 }

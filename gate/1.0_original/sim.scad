@@ -1,21 +1,21 @@
-include <modules/rule.scad>
+include <../../modules/rule.scad>
 
 
 /* ## gate ## */
 
-import("gate/upright.stl");
+import("upright.stl");
 
 translate([1.5,0,77.55])
-import("gate/angle_L.stl");
+import("angle_L.stl");
 
 translate([97.9,0,88.1])
-import("gate/traverse_186mm.stl");
+import("traverse_186mm.stl");
 
 translate([203.0,0,77.55])
-import("gate/angle_R.stl");
+import("angle_R.stl");
 
 translate([203.7,0,0])
-import("gate/upright.stl");
+import("upright.stl");
 
 
 

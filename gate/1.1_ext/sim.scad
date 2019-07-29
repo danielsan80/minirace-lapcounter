@@ -1,4 +1,6 @@
-include <modules/rule.scad>
+include <../../modules/rule.scad>
+
+upright_shift = 0.41225;
 
 /*
 ## upright_ext1 ##
@@ -43,19 +45,19 @@ import("gate/mods/traverse_ext1_R.stl");
 
 
 translate([-38.82,0,0])
-import("gate/mods/upright_ext1.stl");
+import("upright_1.1.1.stl");
 
-translate([1.5-38.82,0,77.55+38.676])
-import("gate/angle_L.stl");
+translate([1.5-38.82-upright_shift,0,77.55+38.676])
+import("../1.0_original/angle_L.stl");
 
-translate([97.9,0,88.1+38.676])
-import("gate/mods/traverse_ext1_LR_fixed.stl");
+translate([97.9-upright_shift,0,88.1+38.676])
+import("traverse_1.1.1.stl");
 
-translate([203.0+38.75,0,77.55+38.676])
-import("gate/angle_R.stl");
+translate([203.0+38.75-upright_shift,0,77.55+38.676])
+import("../1.0_original/angle_R.stl");
 
 translate([203.7+38.75,0,0])
-import("gate/mods/upright_ext1.stl");
+import("upright_1.1.1.stl");
 
 
 
