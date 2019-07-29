@@ -67,7 +67,7 @@ module sim_gate_scaled() {
         frame_height]
     )
     union() {
-        import("gate/1.2_scale/upright_1.2.stl");
+        import("gate/1.2_scale/upright_1.2.1.stl");
 
         translate([1.4,0.2,149.75])
         import("gate/1.2_scale/angle_L_1.2.stl");
@@ -79,7 +79,7 @@ module sim_gate_scaled() {
         import("gate/1.2_scale/angle_R_1.2.stl");
 
         translate([362.15,0,0])
-        import("gate/1.2_scale/upright_1.2.stl");    
+        import("gate/1.2_scale/upright_1.2.1.stl");    
     }
 
 }
