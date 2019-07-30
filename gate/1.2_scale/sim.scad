@@ -23,7 +23,7 @@ translate([362.15,0,0])
 import("upright_1.2.1.stl");
 
 
-translate([0,0,-1])
+/* translate([0,0,-1])
 color("red")
 cylinder(r=hole_r, h=15);
 
@@ -33,7 +33,7 @@ cylinder(r=hole_r, h=15);
 
 translate([0,-upright_length/4,-1])
 color("red")
-cylinder(r=hole_r, h=15);
+cylinder(r=hole_r, h=15); */
 
 
 echo(upright_length/4);
