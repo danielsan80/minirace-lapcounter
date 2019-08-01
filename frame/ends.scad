@@ -11,6 +11,7 @@ frame_end_y_paddings = frame_end_y_padding_back+frame_end_y_padding_front;
 
 frame_end_x_padding_left = y_padding_back;
 frame_end_x_padding_right = y_padding_back;
+frame_end_x_paddings = frame_end_x_padding_left+frame_end_x_padding_right;
 
 frame_end_body_length = frame_end_y_paddings + play + sensor_length + play + y_padding_center + channel_width;
 frame_end_width = sensor_width;
@@ -40,12 +41,13 @@ module frame_end_wall() {
     cube([frame_end_width,frame_end_y_padding_back, frame_height]);
 }
 
-module frame_end_uprights() {
+module frame_end_uprights(ext=false) {
+    function upright_height() = !ext?frame_height-base_height-play:frame_height*2-base_height-play;
     n=3;
 
     for (i=[1:n-1]) {
         translate([frame_end_width/2, -play-frame_end_y_padding_back + frame_end_body_length/n*i])
-        cylinder(r=1.5, h=frame_height-base_height-play);
+        cylinder(r=1.5, h=upright_height());
     }
 
 }
@@ -60,7 +62,7 @@ module frame_end_door_void() {
 
 
 module frame_end_body() {
-    frame_end_uprights();
+    /* frame_end_uprights(ext=true); */
     difference() {
         union() {
             frame_end_base();
@@ -119,25 +121,29 @@ module frame_end_door_dock() {
 }
 
 
-module frame_end_cover_leg_back() {
+module frame_end_cover_leg_back(ext=false) {
+    function leg_height() = !ext?frame_height-base_height:frame_height*2-base_height;
 
-
-    cube([frame_end_x_padding_left-frame_end_cover_play, frame_end_cover_leg_thick, frame_height-base_height]);
+    cube([frame_end_x_padding_left-frame_end_cover_play, frame_end_cover_leg_thick, leg_height()]);
 
     translate([frame_end_x_padding_left-frame_end_cover_play+frame_end_wires_void_length,0,0])
-    cube([frame_end_x_padding_right*2, frame_end_cover_leg_thick, frame_height-base_height]);
+    cube([frame_end_x_padding_right*2, frame_end_cover_leg_thick, leg_height()]);
 
 }
 
-module frame_end_cover_leg_front() {
+module frame_end_cover_leg_front(ext=false) {
+    function leg_height() = !ext?frame_height-base_height:frame_height*2-base_height;
+
     cube([
         frame_end_width-frame_end_x_padding_left-frame_end_cover_play,
         frame_end_cover_leg_thick,
-        frame_height-base_height
+        leg_height()
     ]);
 }
 
-module frame_end_cover_leg_right() {
+module frame_end_cover_leg_right(ext=false) {
+    function leg_height() = !ext?frame_height-base_height:frame_height*2-base_height;
+
     translate([
         0,
         frame_end_y_padding_center+frame_end_cover_play*2+frame_end_cover_leg_thick,
@@ -146,13 +152,13 @@ module frame_end_cover_leg_right() {
     cube([
         frame_end_x_padding_right,
         frame_end_cover_leg_thick,
-        frame_height-base_height
+        leg_height()
     ]);
 
     cube([
         frame_end_x_padding_right,
         frame_end_cover_leg_thick,
-        frame_height-base_height
+        leg_height()
     ]);
 /*
     cube([
@@ -162,80 +168,82 @@ module frame_end_cover_leg_right() {
     ]); */
 }
 
-module frame_end_cover_leg_left() {
+module frame_end_cover_leg_left(ext=false) {
+    function leg_height() = !ext?frame_height-base_height:frame_height*2-base_height;
+
     translate([0,frame_end_cover_leg_thick+frame_end_cover_play+default_thick+(frame_end_door_length+play*2)+default_thick+frame_end_cover_play,0])
     cube([
         frame_end_x_padding_left,
         frame_end_cover_leg_thick,
-        frame_height-base_height
+        leg_height()
     ]);
 
     cube([
         frame_end_x_padding_left,
         frame_end_cover_leg_thick,
-        frame_height-base_height
+        leg_height()
     ]);
 }
 
 
-module frame_end_cover_legs() {
+module frame_end_cover_legs(ext=false) {
     translate([
         frame_end_x_padding_left+frame_end_cover_play,
         -play+frame_end_cover_play,
         base_height
     ])
-    frame_end_cover_leg_back();
+    frame_end_cover_leg_back(ext);
 
     translate([
         frame_end_x_padding_left+frame_end_cover_play,
         -play-frame_end_y_padding_back+frame_end_body_length-frame_end_y_padding_front-frame_end_cover_play -frame_end_cover_leg_thick,
         base_height
     ])
-    frame_end_cover_leg_front();
+    frame_end_cover_leg_front(ext);
 
     translate([
         frame_end_width-frame_end_x_padding_right,
         sensor_length+play-frame_end_cover_play-frame_end_cover_leg_thick,
         base_height
     ])
-    frame_end_cover_leg_right();
+    frame_end_cover_leg_right(ext);
 
     translate([
         frame_end_x_padding_left+frame_end_cover_play,
         -play-frame_end_y_padding_back+(frame_end_body_length-(frame_end_door_length+play*2))/2-default_thick-frame_end_cover_play-frame_end_cover_leg_thick,
         base_height
     ])
-    frame_end_cover_leg_left();
+    frame_end_cover_leg_left(ext);
 }
 
 
 module frame_end_cover_plate() {
-    difference() {
-        translate([
-            frame_end_x_padding_left+frame_end_cover_play,
-            -play+frame_end_cover_play,
-            frame_height - base_height
-        ])
-        cube([
-            frame_end_width-frame_end_x_padding_left-frame_end_cover_play,
-            frame_end_body_length-frame_end_y_paddings-frame_end_cover_play*2,
-            base_height
-        ]);
+
+        difference() {
+            translate([
+                frame_end_x_padding_left+frame_end_cover_play,
+                -play+frame_end_cover_play,
+                frame_height - base_height
+            ])
+            cube([
+                frame_end_width-frame_end_x_padding_left-frame_end_cover_play,
+                frame_end_body_length-frame_end_y_paddings-frame_end_cover_play*2,
+                base_height
+            ]);
 
 
-        translate([
-            frame_end_width-frame_end_x_padding_right-frame_end_cover_play,
-            sensor_length +play-frame_end_cover_play,
-            frame_height - base_height
-        ])
-        color("green")
-        cube([
-            frame_end_x_padding_right+frame_end_cover_play,
-            frame_end_y_padding_center+frame_end_cover_play*2,
-            base_height
-        ]);
+            translate([
+                frame_end_width-frame_end_x_padding_right-frame_end_cover_play,
+                sensor_length +play-frame_end_cover_play,
+                frame_height - base_height
+            ])
+            cube([
+                frame_end_x_padding_right+frame_end_cover_play,
+                frame_end_y_padding_center+frame_end_cover_play*2,
+                base_height
+            ]);
 
-    }
+        }
 
     translate([
         0,
@@ -249,13 +257,67 @@ module frame_end_cover_plate() {
     ]);
 }
 
+
+module frame_end_cover_plate_ext_void() {
+    translate([frame_end_x_padding_left,-play,frame_height-base_height])
+    cube([
+        frame_end_width-frame_end_x_paddings,
+        frame_end_body_length-frame_end_y_paddings,
+        base_height
+    ]);
+}
+
+module frame_end_cover_ext_wall() {
+    translate([0,0,frame_height])
+    union() {
+        translate([0,-play-frame_end_y_padding_back,0])
+        cube([frame_end_x_padding_left+frame_end_cover_play, frame_end_body_length, frame_height]);
+
+        translate([frame_end_width-frame_end_x_padding_right-frame_end_cover_play,-play-frame_end_y_padding_back,0])
+        cube([frame_end_x_padding_right+frame_end_cover_play, frame_end_body_length, frame_height]);
+
+        translate([0,-play-frame_end_y_padding_back,0])
+        cube([frame_end_width,frame_end_y_padding_back+frame_end_cover_play, frame_height]);
+
+        translate([0,-play-frame_end_y_paddings+frame_end_body_length-frame_end_cover_play,0])
+        cube([frame_end_width,frame_end_y_padding_back+frame_end_cover_play, frame_height]);
+    }
+}
+
+module frame_end_cover_ext_plate() {
+    translate([0,-play-frame_end_y_padding_back,frame_height*2-base_height])
+    cube([frame_end_width, frame_end_body_length, base_height]);
+
+}
+
+
+module frame_end_hole() {
+    translate([frame_end_width,0,0])
+    sim_gate_bolt(true);
+}
+
+
 module frame_end_cover() {
     /* translate([0,sensor_length+play+channel_y_padding_back+play,frame_height - base_height])
     cube([sensor_width, channel_width-play*2, base_height]); */
 
-    frame_end_cover_plate();
+    difference() {
+        union() {
+            difference() {
+                frame_end_cover_plate();
 
-    frame_end_cover_legs();
+                frame_end_cover_plate_ext_void();
+
+            }
+
+            frame_end_cover_ext_wall();
+            frame_end_cover_ext_plate();
+
+            frame_end_cover_legs(ext=true);
+        }
+
+        frame_end_hole();
+    }
 
 }
 
