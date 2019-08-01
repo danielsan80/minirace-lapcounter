@@ -13,16 +13,16 @@ module sim_frame_rules() {
 }
 
 /** FRAME **/
-sim_frame_block();
+/* sim_frame_block(); */
 sim_frame_end_left();
 sim_frame_end_door_left();
-sim_frame_end_right();
+/* sim_frame_end_right(); */
 
 
 /** COVER **/
-sim_channel_cover();
+/* sim_channel_cover(); */
 sim_frame_end_cover_left();
-sim_frame_end_cover_right();
+/* sim_frame_end_cover_right(); */
 
 
 /** SENSOR **/
@@ -37,7 +37,8 @@ sim_frame_end_cover_right();
 /* sim_gate_ext1(); */
 
 /* GATE SCALED */
-sim_gate_scaled();
+/* sim_gate_scaled(); */
+sim_gate_bolt();
 
 
 /** RULES **/

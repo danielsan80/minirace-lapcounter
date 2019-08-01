@@ -1,4 +1,8 @@
-
+gate_bolt_r = 4;
+gate_bolt_h = 10;
+gate_upright_width=28.334;
+gate_upright_length=68.9;
+$fn=100;
 
 module sim_gate_original() {
     translate([-sensor_width/2,(sensor_length+y_padding_center+channel_width)/2,frame_height])
@@ -47,7 +51,6 @@ module sim_gate_ext() {
     translate([sensor_width*9-(sensor_width-upright_width*gate_ratio)/2-upright_width*gate_ratio,12,0])
     color("green")
     rule(x=upright_width*gate_ratio); */
-
 }
 
 module sim_gate_ext_rules() {
@@ -86,6 +89,45 @@ module sim_gate_scaled() {
     }
 
 }
+
+module gate_bolt(void = false) {
+    function p() = void? 0 : 0.4;
+    color("red")
+    cylinder(r=gate_bolt_r-p(), h=gate_bolt_h);
+}
+
+module gate_bolts(void=false) {
+    union() {
+        gate_bolt(void);
+
+        translate([0,gate_upright_length/4,0])
+        gate_bolt(void);
+
+        translate([0,-gate_upright_length/4,0])
+        gate_bolt(void);
+    }
+}
+
+module sim_gate_bolts(void=false) {
+    translate([
+        -sensor_width/2,
+        (sensor_length+y_padding_center+channel_width)/2,
+        frame_height]
+    )
+    color("red")
+    gate_bolts(void);
+}
+
+module sim_gate_bolt(void=false) {
+    translate([
+        -sensor_width/2,
+        (sensor_length+y_padding_center+channel_width)/2,
+        frame_height]
+    )
+    color("red")
+    gate_bolt(void);
+}
+
 
 
 /** ALIASES **/
