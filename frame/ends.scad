@@ -210,16 +210,32 @@ module frame_end_cover_legs() {
 
 
 module frame_end_cover_plate() {
-    translate([
-        frame_end_x_padding_left+frame_end_cover_play,
-        -play+frame_end_cover_play,
-        frame_height - base_height
-    ])
-    cube([
-        frame_end_width-frame_end_x_padding_left-frame_end_cover_play,
-        frame_end_body_length-frame_end_y_paddings-frame_end_cover_play*2,
-        base_height
-    ]);
+    difference() {
+        translate([
+            frame_end_x_padding_left+frame_end_cover_play,
+            -play+frame_end_cover_play,
+            frame_height - base_height
+        ])
+        cube([
+            frame_end_width-frame_end_x_padding_left-frame_end_cover_play,
+            frame_end_body_length-frame_end_y_paddings-frame_end_cover_play*2,
+            base_height
+        ]);
+
+
+        translate([
+            frame_end_width-frame_end_x_padding_right-frame_end_cover_play,
+            sensor_length +play-frame_end_cover_play,
+            frame_height - base_height
+        ])
+        color("green")
+        cube([
+            frame_end_x_padding_right+frame_end_cover_play,
+            frame_end_y_padding_center+frame_end_cover_play*2,
+            base_height
+        ]);
+
+    }
 
     translate([
         0,

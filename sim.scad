@@ -14,6 +14,7 @@ module sim_frame_rules() {
 
 /** FRAME **/
 /* sim_frame_block(); */
+color("blue")
 sim_frame_end_left();
 sim_frame_end_door_left();
 /* sim_frame_end_right(); */
@@ -38,7 +39,7 @@ sim_frame_end_cover_left();
 
 /* GATE SCALED */
 /* sim_gate_scaled(); */
-sim_gate_bolt();
+sim_gate_bolt(true);
 
 
 /** RULES **/
