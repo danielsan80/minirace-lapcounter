@@ -72,21 +72,26 @@ module traverse_clips(void=false) {
 
 /** UPRIGHT LEFT **/
 
-/* import("stl/1.2.0/upright_1.2.0_scaled.stl");
+/* import("stl/1.2.0/upright_1.2.0_scaled.stl"); */
 
+
+translate([-30,0,0])
 union() {
+    play = 0.4;
+    h = 10;
+
     translate([0,0,-1])
     color("red")
-    cylinder(r=hole_r, h=15);
+    cylinder(r=hole_r-play, h=h);
 
     translate([0,upright_length/4,-1])
     color("red")
-    cylinder(r=hole_r, h=15);
+    cylinder(r=hole_r-play, h=h);
 
     translate([0,-upright_length/4,-1])
     color("red")
-    cylinder(r=hole_r, h=15);
-} */
+    cylinder(r=hole_r-play, h=h);
+}
 
 import("stl/1.2.1/upright_1.2.1_holes.stl");
 
