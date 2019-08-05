@@ -1,6 +1,8 @@
+include <../modules/rule.scad>
+
 thick = 3;
 side = 15;
-space_x = 2;
+space_x = 3;
 space_y = 2;
 r=6;
 $fn = 100;
@@ -9,6 +11,17 @@ led_d = 5.4;
 led_r = led_d/2;
 
 bar_thick = 2;
+
+
+startlights_length = side*5+space_x*4;
+startlights_height = side*2+space_y;
+
+gate_hook_width = 17;
+gate_hook_thick = 1.5;
+gate_hook_space = 3;
+
+gate_hook_x2_width = 54.4;
+
 
 module bar_x() {
     cube([side*5,bar_thick,bar_thick]);
@@ -102,7 +115,7 @@ module startlight() {
                     cylinder(r=r, h=thick);
 
                     translate([side/2,side/2,1])
-                    cylinder(r=r-1.5, h=thick+1);
+                    cylinder(r=r-1, h=thick+1);
                 }
             }
             translate([side/2,side/2,-1])
@@ -145,10 +158,56 @@ module startlights_10() {
     }
 }
 
+module hook() {
+    play=0.4;
+
+    module interconn() {
+        translate([0,0,gate_hook_space])
+        cube([gate_hook_space,bar_thick,gate_hook_thick]);
+    }
+
+    module hook_bar() {
+        translate([0,0,gate_hook_space+gate_hook_thick])
+        cube([startlights_length, bar_thick, bar_thick]);
+    }
+
+    translate([0,startlights_height-bar_thick-space_y,-gate_hook_space-gate_hook_thick-bar_thick])
+    union() {
+        translate([0,-gate_hook_space+bar_thick,0])
+        cube([startlights_length, gate_hook_space, gate_hook_space]);
+
+        interconn();
+
+        translate([startlights_length-gate_hook_space,0,0])
+        interconn();
+
+        translate([(startlights_length-gate_hook_space)/2,0,0])
+        interconn();
+
+        hook_bar();
+
+        for (j=[0:3]) {
+            translate([(side+space_x)*j+side+play,0,0])
+            union(){
+                translate([0,-bar_thick,gate_hook_space+gate_hook_thick])
+                union() {
+                    cube([space_x-play*2,bar_thick, bar_thick*3+play*2]);
+                    translate([0,0,bar_thick*2+play*2])
+                    cube([space_x-play*2,bar_thick*2, bar_thick]);
+                }
+            }
+        }
+    }
+}
+
+hook();
 
 
-/* startlights_10();
-leds_10(); */
+/* startlights_10(); */
+/* leds_10(); */
 
-startlights_2();
+/* startlights_2(); */
 /* led(); */
+
+/* translate([0,-30,0])
+rule(startlights_length); */
