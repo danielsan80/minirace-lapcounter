@@ -1,7 +1,7 @@
 include <frame/all.scad>
 
 module sim_frame_rules() {
-    translate([-sensor_width,-120,0])
+    translate([-sensor_width_m,-120,0])
     rule(x=403);
 
     translate([-60,-play-ramp_bottom_length,0])
@@ -13,21 +13,21 @@ module sim_frame_rules() {
 }
 
 /** FRAME **/
-/* sim_frame_block();
+sim_frame_block();
 
 sim_frame_end_left();
 sim_frame_end_door_left();
-sim_frame_end_right(); */
+sim_frame_end_right();
 
 
 /** COVER **/
-/* sim_channel_cover();
+sim_channel_cover();
 sim_frame_end_cover_left();
-sim_frame_end_cover_right(); */
+sim_frame_end_cover_right();
 
 
 /** SENSOR **/
-/* sim_sensor(); */
+sim_sensor();
 
 
 
@@ -38,13 +38,13 @@ sim_frame_end_cover_right(); */
 /* sim_gate_ext1(); */
 
 /* GATE SCALED */
-/* translate([0,0,frame_height])
+translate([0,0,frame_height])
 union() {
     sim_gate_scaled();
     sim_gate_bolt(true);
-} */
+}
 
-sim_gate_bolt();
+/* sim_gate_bolt(); */
 
 /** RULES **/
 /* sim_frame_rules(); */

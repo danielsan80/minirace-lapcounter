@@ -1,7 +1,7 @@
-sensor_width_margin = 0.4;
+sensor_width_m_margin = 0.4;
 
 sensor_length = 59.6;
-sensor_width = 39.45 + sensor_width_margin*2;
+sensor_width_m = 39.45 + sensor_width_margin*2;
 sensor_thick = 1.5;
 
 sensor_hole_d = 2.7;
@@ -27,18 +27,18 @@ module sensor() {
     translate([0,0,quartz_height])
         union() {
             difference() {
-                cube([sensor_width, sensor_length, sensor_thick]);
+                cube([sensor_width_m, sensor_length, sensor_thick]);
 
                 translate([sensor_back_hole_x, sensor_back_hole_y, -play])
                     cylinder(r=sensor_hole_r, h=a_few);
 
-                translate([sensor_width-sensor_back_hole_x, sensor_back_hole_y, -play])
+                translate([sensor_width_m-sensor_back_hole_x, sensor_back_hole_y, -play])
                     cylinder(r=sensor_hole_r, h=a_few);
 
                 translate([sensor_front_hole_x, sensor_length - sensor_front_hole_y, -play])
                     cylinder(r=sensor_hole_r, h=a_few);
 
-                translate([sensor_width - sensor_front_hole_x, sensor_length - sensor_front_hole_y, -play])
+                translate([sensor_width_m - sensor_front_hole_x, sensor_length - sensor_front_hole_y, -play])
                     cylinder(r=sensor_hole_r, h=a_few);
 
             }
@@ -49,7 +49,7 @@ module sensor() {
 
 module sim_sensor(n=8) {
     for (i = [0:n-1]) {
-        translate([sensor_width*i,0,0])
+        translate([sensor_width_m*i,0,0])
         union() {
             color("blue")
             sensor();

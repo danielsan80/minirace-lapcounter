@@ -13,7 +13,7 @@ module frame_block() {
 
 module sim_frame_block(n=8) {
     for (i = [0:n-1]) {
-        translate([sensor_width*i,0,0])
+        translate([sensor_width_m*i,0,0])
         union() {
             frame_block();
         }
@@ -23,7 +23,7 @@ module sim_frame_block(n=8) {
 module print_frame_block_body(n=4) {
     difference() {
         for (i = [0:n-1]) {
-            translate([sensor_width*i,0,0])
+            translate([sensor_width_m*i,0,0])
             frame_block_body();
         }
         print_frame_block_body_clips_void(n);
