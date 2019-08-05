@@ -14,7 +14,7 @@ frame_end_x_padding_right = y_padding_back;
 frame_end_x_paddings = frame_end_x_padding_left+frame_end_x_padding_right;
 
 frame_end_body_length = frame_end_y_paddings + play + sensor_length + play + y_padding_center + channel_width;
-frame_end_width = sensor_width_m;
+frame_end_width = sensor_width + sensor_width_margin_min*2;
 
 frame_end_wires_void_length=frame_end_width-frame_end_x_padding_left*2-frame_end_x_padding_right*2;
 

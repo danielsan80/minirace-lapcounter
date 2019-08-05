@@ -20,6 +20,32 @@ module sim_frame_block(n=8) {
     }
 }
 
+module sim_frame_block_only_padding_back(n=8) {
+    fix = 0.1;
+
+    for (i = [0:n-1]) {
+        translate([sensor_width_m*i,0,0])
+        difference() {
+            frame_block();
+            translate([-fix,0,-fix])
+            cube([sensor_width_m+fix*2,500, sensor_spot_height+fix*2]);
+        }
+    }
+}
+
+module sim_frame_block_no_padding_back(n=8) {
+    fix = 0.1;
+
+    for (i = [0:n-1]) {
+        translate([sensor_width_m*i,0,0])
+        difference() {
+            frame_block();
+            translate([-fix,-500,-fix])
+            cube([sensor_width_m+fix*2,500, sensor_spot_height+fix*2]);
+        }
+    }
+}
+
 module print_frame_block_body(n=4) {
     difference() {
         for (i = [0:n-1]) {

@@ -36,7 +36,7 @@ module channel_cover_leg() {
 }
 
 module channel_cover_leg_back() {
-    cube([sensor_x_padding-play, channel_cover_leg_thick, frame_height-base_height]);
+    cube([sensor_width_margin+sensor_x_padding-play, channel_cover_leg_thick, frame_height-base_height]);
 }
 
 module channel_cover_leg_front() {
@@ -47,7 +47,7 @@ module channel_cover_legs() {
     translate([0,sensor_length+play+channel_y_padding_back+play,base_height])
     channel_cover_leg_back();
 
-    translate([sensor_width_m-channel_cover_leg_back_length ,sensor_length+play+channel_y_padding_back+play,base_height])
+    translate([sensor_width_m-sensor_width_margin-channel_cover_leg_back_length ,sensor_length+play+channel_y_padding_back+play,base_height])
     channel_cover_leg_back();
 
     translate([0,sensor_length+play+channel_y_padding_back + channel_width -play -channel_cover_leg_side ,base_height])

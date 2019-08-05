@@ -51,28 +51,28 @@ module sensor_spot_connection_right_void() {
 } */
 
 module sensor_spot_connector_void() {
-    translate([sensor_x_padding-play, sensor_length - a_few/2, base_height])
-        cube([sensor_width_m-sensor_x_padding*2+play*2, a_few, a_few]);
+    translate([sensor_width_margin+ sensor_x_padding-play, sensor_length - a_few/2, base_height])
+        cube([sensor_width-sensor_x_padding*2+play*2, a_few, a_few]);
 }
 
 module sensor_spot_quartz_void() {
-    translate([0, sensor_length - quartz_length-quartz_y_offset-quartz_margin_y, 0])
-        cube([quartz_width+quartz_x_offset+quartz_margin_x, quartz_length+quartz_y_offset+quartz_margin_y, a_few]);
+    translate([sensor_width_margin-quartz_margin_x, sensor_length - quartz_length-quartz_y_offset-quartz_margin_y, 0])
+        cube([quartz_width+quartz_x_offset*2+quartz_margin_x*2, quartz_length+quartz_y_offset+quartz_margin_y, a_few]);
 }
 
 module sensor_spot_back_colmuns() {
-    translate([sensor_back_hole_x,sensor_back_hole_y,0])
+    translate([sensor_width_margin+ sensor_back_hole_x,sensor_back_hole_y,0])
     cylinder(r=sensor_hole_r, h=sensor_spot_height);
 
-    translate([sensor_width_m-sensor_back_hole_x,sensor_back_hole_y,0])
+    translate([sensor_width_m-sensor_width_margin-sensor_back_hole_x,sensor_back_hole_y,0])
     cylinder(r=sensor_hole_r, h=sensor_spot_height);
 }
 
 module sensor_spot_front_colmuns() {
-    translate([sensor_front_hole_x,sensor_length-sensor_front_hole_y,0])
+    translate([sensor_width_margin+sensor_front_hole_x,sensor_length-sensor_front_hole_y,0])
     cylinder(r=sensor_hole_r, h=sensor_spot_height);
 
-    translate([sensor_width_m-sensor_front_hole_x,sensor_length-sensor_front_hole_y,0])
+    translate([sensor_width_m-sensor_width_margin-sensor_front_hole_x,sensor_length-sensor_front_hole_y,0])
     cylinder(r=sensor_hole_r, h=sensor_spot_height);
 }
 
@@ -83,8 +83,8 @@ module sensor_spot_base_renforcement_y() {
 }
 
 module sensor_spot_base_renforcement_x() {
-    translate([sensor_front_hole_x, sensor_length-sensor_front_hole_y-base_renforcement_width/2,0])
-        cube([sensor_width_m-sensor_front_hole_x*2, base_renforcement_width, base_renforcement_height]);
+    translate([sensor_width_margin+sensor_front_hole_x, sensor_length-sensor_front_hole_y-base_renforcement_width/2,0])
+        cube([sensor_width-sensor_front_hole_x*2, base_renforcement_width, base_renforcement_height]);
 }
 
 module sensor_spot() {
