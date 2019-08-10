@@ -1,7 +1,7 @@
 include <frame/all.scad>
 
 /* FRAME BLOCK BODY x4 */
-/* print_frame_block_body(4); */
+print_frame_block_body(4);
 
 /* CHANNEL COVER x4 */
 /* print_channel_cover(4); */
@@ -19,5 +19,5 @@ test_print_frame_end_left(); */
 print_frame_end_body_left(); */
 
 
-rotate([180,0,0])
-sim_frame_end_cover_left();
+/* rotate([180,0,0])
+sim_frame_end_cover_left(); */
