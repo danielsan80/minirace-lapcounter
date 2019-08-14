@@ -116,3 +116,16 @@ module print_frame_end_body_clips_void() {
     rotate([0,0,90])
         clip_void();
 }
+
+
+
+module print_ramp_end_clips_void() {
+
+    translate([frame_end_x_padding_left+frame_end_x_padding_left/2,0,0])
+    rotate([0,0,90])
+        clip_void();
+
+    translate([frame_end_width-frame_end_x_padding_right-frame_end_x_padding_right/2,0,0])
+    rotate([0,0,90])
+        clip_void();
+}

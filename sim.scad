@@ -20,6 +20,9 @@ sim_frame_end_door_left();
 sim_frame_end_right();
 
 
+sim_ramp_end_left();
+
+
 /** COVER **/
 sim_channel_cover();
 sim_frame_end_cover_left();
