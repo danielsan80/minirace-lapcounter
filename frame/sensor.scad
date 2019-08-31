@@ -1,10 +1,16 @@
+sensor_width_margin_for_6 = 7.10833333333333333;
+sensor_side_spacer_width_for_5 = 26.83333333333333333333;
+
 sensor_width_margin_min = 0.4;
 sensor_width_margin = 0.4;
+
 
 sensor_length = 59.6;
 sensor_width = 39.45;
 sensor_width_m = sensor_width + sensor_width_margin*2;
 sensor_thick = 1.5;
+
+sensor_side_spacer_width = 0;
 
 sensor_hole_d = 2.7;
 sensor_hole_r = sensor_hole_d/2;
@@ -51,7 +57,7 @@ module sensor() {
 
 module sim_sensor(n=8) {
     for (i = [0:n-1]) {
-        translate([sensor_width_m*i,0,0])
+        translate([sensor_side_spacer_width+sensor_width_m*i,0,0])
         union() {
             color("blue")
             sensor();

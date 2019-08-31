@@ -9,13 +9,13 @@ channel_y_paddings = channel_y_padding_back+channel_y_padding_front;
 
 
 
-module channel_body() {
+module channel_body(width = sensor_width_m) {
     translate([0,sensor_length+play,0])
-    cube([sensor_width_m, channel_width+channel_y_paddings, frame_height]);
+    cube([width, channel_width+channel_y_paddings, frame_height]);
 }
-module channel_cavity() {
+module channel_cavity(width = sensor_width_m) {
     translate([-play,sensor_length+play+channel_y_padding_back,base_height])
-    cube([sensor_width_m+play*2, channel_width, a_few]);
+    cube([width+play*2, channel_width, a_few]);
 }
 
 module channel_connector_void() {
@@ -31,6 +31,14 @@ module channel() {
 
 }
 
+module channel_spacer() {
+    difference() {
+        channel_body(width = sensor_side_spacer_width);
+        channel_cavity(width = sensor_side_spacer_width);
+    }
+}
+
+
 module channel_cover_leg() {
     cube([channel_cover_leg_side, channel_cover_leg_side, frame_height-base_height]);
 }
@@ -39,8 +47,8 @@ module channel_cover_leg_back() {
     cube([sensor_width_margin+sensor_x_padding-play, channel_cover_leg_thick, frame_height-base_height]);
 }
 
-module channel_cover_leg_front() {
-    cube([sensor_width_m, channel_cover_leg_thick, frame_height-base_height]);
+module channel_cover_leg_front(width = sensor_width_m) {
+    cube([width, channel_cover_leg_thick, frame_height-base_height]);
 }
 
 module channel_cover_legs() {
@@ -52,6 +60,14 @@ module channel_cover_legs() {
 
     translate([0,sensor_length+play+channel_y_padding_back + channel_width -play -channel_cover_leg_side ,base_height])
     channel_cover_leg_front();
+}
+
+module channel_cover_spacer_legs() {
+    translate([0,sensor_length+play+channel_y_padding_back+play,base_height])
+    channel_cover_leg_front(width = sensor_side_spacer_width);
+
+    translate([0,sensor_length+play+channel_y_padding_back + channel_width -play -channel_cover_leg_side ,base_height])
+    channel_cover_leg_front(width = sensor_side_spacer_width);
 }
 
 module channel_cover_legs_old() {
@@ -81,11 +97,23 @@ module channel_cover() {
 
 }
 
+module channel_cover_spacer() {
+    translate([0,sensor_length+play+channel_y_padding_back+play,frame_height - base_height])
+    cube([sensor_side_spacer_width, channel_width-play*2, base_height]);
+
+    channel_cover_spacer_legs();
+
+}
+
 module sim_channel_cover(n=8) {
+
+    channel_cover_spacer();
     for (i = [0:n-1]) {
-        translate([sensor_width_m*i,0,0])
+        translate([sensor_side_spacer_width+sensor_width_m*i,0,0])
         channel_cover();
     }
+    translate([sensor_side_spacer_width+sensor_width_m*n,0,0])
+    channel_cover_spacer();
 }
 
 module print_channel_cover(n=4) {

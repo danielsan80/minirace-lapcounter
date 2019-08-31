@@ -2,6 +2,7 @@
 module main_all() {
     include <frame/all.scad>
 
+
     /** FRAME **/
     sim_frame_block();
 
@@ -27,10 +28,48 @@ module main_all() {
     }
 }
 
+module main2_all() {
+    include <frame/all.scad>
+
+    /* echo(
+        (
+            sensor_width_m*8
+            -(sensor_width+sensor_width_margin_for_6*2)*5
+        )/2
+    ); */
+    sensor_width_margin = sensor_width_margin_for_6;
+    sensor_side_spacer_width = sensor_side_spacer_width_for_5;
+
+    /** FRAME **/
+    sim_frame_block(n=5);
+
+    sim_frame_end_left();
+    sim_frame_end_door_left();
+    sim_frame_end_right();
+
+
+    /** COVER **/
+    sim_channel_cover(n=5);
+    sim_frame_end_cover_left();
+    sim_frame_end_cover_right();
+
+
+    /** SENSOR **/
+    sim_sensor(n=5);
+
+    /* GATE */
+    translate([0,0,frame_height])
+    union() {
+        sim_gate_scaled();
+        sim_gate_bolt(true);
+    }
+}
+
 module backup_all() {
     include <frame/all.scad>
     channel_width = 50;
-    sensor_width_margin = 7.10833333333333333;
+    sensor_width_margin = sensor_width_margin_for_6;
+
 
     module backup() {
 
@@ -68,6 +107,6 @@ module backup_all() {
 
 
 
-main_all();
+main2_all();
 
 backup_all();

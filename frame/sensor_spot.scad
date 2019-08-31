@@ -17,23 +17,23 @@ base_crossbar_width = 10;
 base_renforcement_height = 3;
 base_renforcement_width = 2;
 
-module sensor_spot_body() {
+module sensor_spot_body(width = sensor_spot_width) {
     translate([0, -play -sensor_spot_y_padding_back,0])
-        cube([sensor_spot_width, sensor_spot_length, sensor_spot_height]);
+        cube([width, sensor_spot_length, sensor_spot_height]);
 }
 
-module sensor_spot_cavity() {
+module sensor_spot_cavity(width = sensor_spot_width) {
     translate([-play, -play,sensor_spot_height - sensor_thick - sensor_spot_excess])
-        cube([sensor_width_m+play*2, sensor_length + play*2, a_few]);
+        cube([width+play*2, sensor_length + play*2, a_few]);
 }
 
-module sensor_spot_void() {
+module sensor_spot_void(width = sensor_spot_width) {
     translate([-play, -play + sensor_y_padding, 0])
-        cube([sensor_width_m+play*2, sensor_void_length, a_few]);
+        cube([width+play*2, sensor_void_length, a_few]);
 }
 
-module sensor_spot_base() {
-        cube([sensor_width_m, sensor_length, base_height]);
+module sensor_spot_base(width = sensor_spot_width) {
+        cube([width, sensor_length, base_height]);
 }
 
 /* module sensor_spot_connection_left_void() {
@@ -106,4 +106,13 @@ module sensor_spot() {
 
     sensor_spot_base_renforcement_x();
     sensor_spot_base_renforcement_y();
+}
+
+module sensor_spot_spacer() {
+    difference() {
+        sensor_spot_body(width = sensor_side_spacer_width);
+        sensor_spot_cavity(width = sensor_side_spacer_width);
+        sensor_spot_void(width = sensor_side_spacer_width);
+    }
+    sensor_spot_base(width = sensor_side_spacer_width);
 }
