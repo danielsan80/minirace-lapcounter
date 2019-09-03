@@ -105,15 +105,18 @@ module channel_cover_spacer() {
 
 }
 
-module sim_channel_cover(n=8) {
-
-    channel_cover_spacer();
+module sim_channel_cover(n=8, spacer_left=false, spacer_right=false) {
+    if (spacer_left) {
+        channel_cover_spacer();
+    }
     for (i = [0:n-1]) {
         translate([sensor_side_spacer_width+sensor_width_m*i,0,0])
         channel_cover();
     }
-    translate([sensor_side_spacer_width+sensor_width_m*n,0,0])
-    channel_cover_spacer();
+    if (spacer_right) {
+        translate([sensor_side_spacer_width+sensor_width_m*n,0,0])
+        channel_cover_spacer();
+    }
 }
 
 module print_channel_cover(n=4) {

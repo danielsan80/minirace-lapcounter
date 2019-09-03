@@ -20,16 +20,20 @@ module frame_block_spacer() {
 
 
 
-module sim_frame_block(n=8) {
-    frame_block_spacer();
+module sim_frame_block(n=8, spacer_left=false, spacer_right=false) {
+    if (spacer_left) {
+        frame_block_spacer();
+    }
     for (i = [0:n-1]) {
         translate([sensor_side_spacer_width+sensor_width_m*i,0,0])
         union() {
             frame_block();
         }
     }
-    translate([sensor_side_spacer_width+sensor_width_m*n,0,0])
-    frame_block_spacer();
+    if (spacer_right) {
+        translate([sensor_side_spacer_width+sensor_width_m*n,0,0])
+        frame_block_spacer();
+    }
 }
 
 module sim_frame_block_only_padding_back(n=8) {

@@ -1,5 +1,5 @@
 
-module print_frame_block_body_clips_void_main(n=4) {
+module print_frame_block_body_backup_clips_void(n=4) {
     include <frame/all.scad>
     channel_width = 50;
     print_frame_block_body_clips_void(n);
@@ -20,7 +20,7 @@ module print_frame_block_body_backup_without_clips_void(n=3) {
 module print_frame_block_body_backup() {
     difference() {
         print_frame_block_body_backup_without_clips_void();
-        print_frame_block_body_clips_void_main();
+        print_frame_block_body_backup_clips_void();
     }
 }
 
@@ -41,3 +41,12 @@ print_frame_block_body_backup();
 
 /* CHANNEL COVER BACKUP x3 */
 /* print_channel_cover_backup(); */
+
+
+
+/* module print_frame_block_body_main2_left() {
+    difference() {
+        print_frame_block_body_main2_left_without_clips_void();
+        print_frame_block_body_main2_left_clips_void();
+    }
+} */

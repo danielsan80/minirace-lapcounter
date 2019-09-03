@@ -41,7 +41,7 @@ module main2_all() {
     sensor_side_spacer_width = sensor_side_spacer_width_for_5;
 
     /** FRAME **/
-    sim_frame_block(n=5);
+    sim_frame_block(n=5,spacer_left=true, spacer_right=true);
 
     sim_frame_end_left();
     sim_frame_end_door_left();
@@ -49,7 +49,7 @@ module main2_all() {
 
 
     /** COVER **/
-    sim_channel_cover(n=5);
+    sim_channel_cover(n=5,spacer_left=true, spacer_right=true);
     sim_frame_end_cover_left();
     sim_frame_end_cover_right();
 
