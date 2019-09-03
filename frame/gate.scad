@@ -65,7 +65,7 @@ module sim_gate_ext_rules() {
 
 module sim_gate_scaled() {
     translate([
-        -sensor_width_m/2,
+        -(sensor_width+sensor_width_margin_min)/2,
         (sensor_length+y_padding_center+channel_width)/2,
         frame_height]
     )
