@@ -1,6 +1,10 @@
 
 frame_block_body_length = y_padding_back+play+sensor_length+play+y_padding_center+channel_width+y_padding_front;
 
+num_frame_block = 8;
+
+function frame_total_length(n=8) = sensor_width_m*n+sensor_side_spacer_width*2;
+
 
 module frame_block_body() {
     sensor_spot();
