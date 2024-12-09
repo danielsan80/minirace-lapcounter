@@ -24,13 +24,13 @@ sim_ramp_end_left();
 
 
 /** COVER **/
-sim_channel_cover();
-sim_frame_end_cover_left();
-sim_frame_end_cover_right();
+//sim_channel_cover();
+//sim_frame_end_cover_left();
+//sim_frame_end_cover_right();
 
 
 /** SENSOR **/
-sim_sensor();
+//sim_sensor();
 
 
 
@@ -41,11 +41,11 @@ sim_sensor();
 /* sim_gate_ext1(); */
 
 /* GATE SCALED */
-translate([0,0,frame_height])
-union() {
-    sim_gate_scaled();
-    sim_gate_bolt(true);
-}
+//translate([0,0,frame_height])
+//union() {
+//    sim_gate_scaled();
+//    sim_gate_bolt(true);
+//}
 
 /* sim_gate_bolt(); */
 
